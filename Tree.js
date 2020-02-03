@@ -1,9 +1,9 @@
-var readline = require('readline');
-var rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-  terminal: false
-})
+// var readline = require('readline');
+// var rl = readline.createInterface({
+//   input: process.stdin,
+//   output: process.stdout,
+//   terminal: false
+// })
 class TreeNode {
   constructor(value, children) {
     this.value = value;
@@ -45,10 +45,9 @@ function findInTree(value, treeNode) {
 
 }
 
-var tree = new TreeNode(2, [new TreeNode(1, null), new TreeNode(3, null)]);
+// var tree = new TreeNode(2, [new TreeNode(1, null), new TreeNode(3, null)]);
+// rl.on('line', (line) => {
+//   console.log(findInTree(parseInt(line), tree) || false);
+// });
 
-
-
-rl.on('line', (line) => {
-  console.log(findInTree(parseInt(line), tree) || false);
-});
+module.exports = TreeNode
