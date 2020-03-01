@@ -1,9 +1,3 @@
-// var readline = require('readline');
-// var rl = readline.createInterface({
-//   input: process.stdin,
-//   output: process.stdout,
-//   terminal: false
-// })
 class TreeNode {
   constructor(value, children) {
     this.value = value;
@@ -21,6 +15,24 @@ class TreeNode {
   getChildren() {
     return this.children;
   }
+
+  hasChild(value) {
+    var result = this.children.filter((child) => {
+      return child.value == value;
+    });
+
+    return result.length > 0;
+  }
+
+  DSP() { // Depth first print
+
+    for (var i=0; i<this.children.length; i++) {
+      this.children[i].DSP();
+    }
+
+    console.log(this.value);
+  }
+
 }
 
 function findInTree(value, treeNode) {
@@ -45,9 +57,17 @@ function findInTree(value, treeNode) {
 
 }
 
-// var tree = new TreeNode(2, [new TreeNode(1, null), new TreeNode(3, null)]);
+var tree = new TreeNode(2, [new TreeNode(1, []), new TreeNode(3, [])]);
+// var readline = require('readline');
+// var rl = readline.createInterface({
+//   input: process.stdin,
+//   output: process.stdout,
+//   terminal: false
+// })
 // rl.on('line', (line) => {
 //   console.log(findInTree(parseInt(line), tree) || false);
+//   console.log(tree.hasChild(parseInt(line)));
 // });
+tree.DSP();
 
 module.exports = TreeNode

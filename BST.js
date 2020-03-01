@@ -56,12 +56,14 @@ class BSTNode {
   }
 }
 
-var BST = new BSTNode(4);
-BST.addChild(2);
-BST.addChild(6);
-BST.addChild(1);
-BST.addChild(3);
-BST.addChild(5);
-BST.addChild(7);
+// var BST = new BSTNode(4);
+// BST.addChild(2);
+// BST.addChild(6);
+// BST.addChild(1);
+// BST.addChild(3);
+// BST.addChild(5);
+// BST.addChild(7);
+//
+// BST.BSP();
 
-BST.BSP();
+modules.export = BST
