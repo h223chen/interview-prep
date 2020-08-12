@@ -1,0 +1,48 @@
+
+
+Download Chime
+4 one-hour sessions    
+    - 1 technical question each    
+    - 3 of these will be coding question    
+        - never jump into the solution
+        - even if you know solution, ask clarifying questions
+        - talk about your thought process
+        - engineers may also give hints, by asking questions
+        - time and space complexity
+        - write clean, workable and efficient code, no pseudocode
+        - use clear variable names, no single letter or overly verbose variable names
+        - review test cases for your code
+        - fine to start with brute force
+        - iterate then improve into optimal solution                
+    - logical maintainable
+    - problem solving
+        - translate solution into code
+    - data structures and algorithm
+    - 1 system design question
+        - fault tolerance, availability
+        eg. design a ride share application, ecommerce like amazon
+        - use 8x11 piece of paper or screenshare on Chime
+        - scalable backend design
+        - approach this as a product development meeting, ask lots of clarifying questions
+            - ask more clarifying questions
+        - they may ask you design it for a thousand users, but plan for a million
+        - ride share or video streaming, choose a DB
+            - eg. NoSQL? in memory DB pros and cons
+        - fault tolerance system
+            - availability zones
+
+day of interview join 15 minutes ahead of time, wear headsets use personal laptop
+
+recommended: recusive algorithms, DFS, BFS
+ADTs: graph, hashmaps, min/max heaps
+
+behavior interview
+    - 2 to 3 behavior questions per interview round, based around amazon's leadership principles
+    - Situation, Task, Action, Results
+    - Practice and memorize the examples
+    - practice using I vs We
+        - prepare examples of impact ahead of time
+    - professional development moments
+        - come up with examples
+    - a moment of disagreeing with my manager
+        - how to proceed with conviction
