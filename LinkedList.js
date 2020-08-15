@@ -1,19 +1,21 @@
 class Node {
-  constructor(value, next) {
+  constructor(value) {
     this.value = value;
-    this.next = next;
+  }
+
+  add(value) {
+    this.next = new Node(value)
+    this.next.prev = this;    
+  }
+
+  prettyPrint() {
+    console.log(this.value);
+    if (this.next) {
+      this.next.prettyPrint();
+    }
   }
 }
 
-function prettyPrint(node) {
-  if (!node) {
-    return;
-  }
-
-  console.log(node.value + ' -> ');
-
-  prettyPrint(node.next);
+module.exports = {
+  Node: Node
 }
-
-
-prettyPrint(new Node(1, new Node(2, new Node(3, null))));
