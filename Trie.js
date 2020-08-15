@@ -1,46 +1,54 @@
-const TreeNode = require('./Tree.js')
-class TrieNode extends TreeNode {
+const LL = require('./LinkedList.js')
+const Node = LL.Node;
+
+class TrieNode extends Node {
   constructor(value) {
     super(value);
+    this.next = {};
+    this.isEnd = false;
   }
 
-  addChild(char) {
-    if (this.hasChild(char)) {
-      return;
+  /**
+   * @params s - string or remaining substring of word being added
+   * @return void
+   */
+  add(s) {
+    if (s && s.length) {
+      let first = s[0];
+      if (!this.next[first]) {    
+        this.next[first] = new TrieNode(first);
+      }    
+      
+      this.next[first].add(s.slice(1));    
     } else {
-      super.addChild(char);
+      this.isEnd = true;
+    }
+  }
+
+  /**
+   * @param s - string or substring of word being checked
+   * @return boolean - if given word is a valid word in this Trie
+   */
+  isWord(s) {
+    let first = s[0];
+    if (s.length) {
+      if (this.next[first]) {
+        return this.next[first].isWord(s.slice(1));
+      } else {
+        return false;
+      }
+    } else {
+      return this.isEnd;
     }
   }
 }
 
-class Trie {
-  constructor() {
-    this.start = new TrieNode(*, []);
-  }
+let trie = new TrieNode();
 
-  /**
-   * adds word to Trie if doesn't exist
-   */
-  addWord(word) {
-    var split = word.split('');
-    var curNode = this.start;
+trie.add('test');
+trie.add('tess');
+trie.add('break');
+trie.add('kirito');
+trie.add('kirit');
 
-    split.forEach((char) => {
-      // check if next character already exists
-      if (this.start.hasChild(char)) {
-        curNode =
-      }
-    });
-  }
-
-  /**
-   * returns True if word is part of Trie, false otherwise
-   */
-  isWord(word) {
-
-  }
-}
-
-var trie = new TrieNode(*, []);
-
-trie.addChild('a');
+trie.isWord('kirito');
