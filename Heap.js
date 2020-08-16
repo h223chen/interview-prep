@@ -1,59 +1,82 @@
-// WIP
-const utils = require('./utils.js')
-const list = utils.makeTest(10);
 
-class Heap {
-  constructor(list) {
-    this.list = list;
-    this.n = this.list.length;
+class MinHeap {
+  constructor() {
+    this.heap = [null];    
   }
 
-  swap(i, j) {
-    let temp = this.list[i];
-    this.list[i] = this.list[j];
-    this.list[j] = temp;
+  __swap(i, j) {
+    const temp = this.heap[i];
+    this.heap[i] = this.heap[j];
+    this.heap[j] = temp;
   }
 
-  buildMaxHeap(list)  {
-    for (let i = Math.floor(this.n / 2); i >= 0; i--) {
-      heapify(list, i);
-    }
-  }
+  insert (value) {
+    this.heap.push(value);
 
-  heapify(i) {
-    let left = (2 * i) + 1;
-    let right = (2 * i) + 2;
-    let max = i;
+    if (this.heap.length > 1) {
+      let current = this.heap.length - 1;
 
-    if (left < this.n && this.list[left] > this.list[max]) {
-      max = left;
-    }
-
-    if (right < this.n && this.list[right] > this.list[max]) {
-      max = right;    
-    }
-
-    if (max != i) {
-      swap(this.list, i, max);
-      heapify(this.list, max);
+      while (current > 1 && this.heap[Math.floor(current/2)] > this.heap[current]) {
+        this.__swap(Math.floor(current/2), current);
+        current = Math.floor(current/2);
+      }
     }
   }
 
-  heapSort(list)  {
-    n = list.length
-    buildMaxHeap(list);
+  remove () {
+    let min = this.heap[1];
 
-    for (let i=list.length - 1; i>0; i--) {
-      swap(list, 0, i);
-      n --;
-      heapify(list, 0);
+    if (this.heap.length > 2) {
+      this.heap[1] = this.heap[this.heap.length - 1];
+      this.heap.splice(this.heap.length - 1);
+
+      if (this.heap.length === 3) {
+        if (this.heap[1] > this.heap[2]) {
+          this.__swap(1, 2);
+
+          return min;
+        }
+      }
+
+      var current = 1;
+      var leftIdx = current * 2;
+      var rightIdx = current * 2 + 1;
+
+
+      while (this.heap[leftIdx] && this.heap[rightIdx] &&
+        (this.heap[current] > this.heap[leftIdx] ||
+        this.heap[current] > this.heap[rightIdx])) {
+          if (this.heap[leftIdx] < this.heap[rightIdx]) {
+            this.__swap(current, leftIdx);
+            current = leftIdx;
+          } else {
+            this.__swap(current, rightIdx);
+            current = rightIdx;
+          }
+        }
+
+        leftIdx = current * 2;
+        rightIdx = current * 2 + 1;
+
+        console.log(leftIdx, rightIdx);
     }
 
-    return list;
+    if (this.heap[rightIdx] === undefined && this.heap[leftIdx] < this.heap[current]) {
+      this.__swap(current, leftidx);
+    } else if (this.heap === 2) {
+      this.heap.splice(1, 1);
+    } else {
+      return null;
+    }
+
+    return smallest;
   }
 }
 
-console.log(list);
+let heap = new MinHeap();
+heap.insert(10);
+heap.insert(23);
+heap.insert(36);
+heap.insert(18);
 
-console.log(res1, res2);
-console.log(JSON.stringify(res1) === JSON.stringify(res2));
+console.log(heap.heap);
