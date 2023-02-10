@@ -1,17 +1,16 @@
-import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 
+import { SCREENS } from './redux'
 import Splash from './pages/Splash'
 import Quiz from './pages/Quiz'
 
 function App() {
-  const [started, setStarted] = useState(false)
-
-  function onStart() {
-    setStarted(true)
-  }
+  const started = useSelector((state) => {
+    return state.screen !== SCREENS.START
+  })
 
   return (
-    !started ? <Splash onStart={onStart}/> : <Quiz />
+    !started ? <Splash /> : <Quiz />
   )
 }
 

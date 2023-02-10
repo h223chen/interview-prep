@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 
 import { nanoid } from 'nanoid'
 
 import Question from '../components/quiz/Question'
+import { changeScreen, SCREENS } from '../redux'
 import data from '../questions.json'
 
 function Quiz() {  
@@ -32,21 +34,29 @@ function Quiz() {
   const [questions, setQuestions] = useState(initQuestions())
   const [checking, setChecking] = useState(false)
 
-  function initQuestions() {
-    let questions = []
+  const dispatch = useDispatch()
 
-    data.map((question) => {
-      questions.push({
-        id: nanoid(),
-        prompt: question.question,
-        options: question.options.map((option) => ({
-          id: nanoid(),
-          label: option,
-          isSelected: false,
-          isCorrect: question.answer === option,
-        }))        
-      })
+  function initAnswers() {
+    let answers = data.map((question) => {
+      return question.answer
     })
+
+    console.log('answers', answers)
+
+    return answers
+  }
+
+  function initQuestions() {
+    let questions = data.map((question) => ({
+      id: nanoid(),
+      prompt: question.question,
+      options: question.options.map((option) => ({
+        id: nanoid(),
+        label: option,
+        isSelected: false,
+        isCorrect: question.answer === option,
+      }))
+    }))
 
     return questions
   }
@@ -93,7 +103,10 @@ function Quiz() {
         })
       }
 
-      <button style={styles.button} onClick={() => { setChecking(true) }}>Check answers</button>
+      <div style={{display: 'flex', gap: '1rem'}}>
+        <button style={styles.button} onClick={() => { setChecking(true) }}>Check answers</button>
+        <button style={styles.button} onClick={() => { dispatch(changeScreen(SCREENS.START)) }}>Back</button>
+      </div>
     </div>
   )
 }

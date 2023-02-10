@@ -1,4 +1,7 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+
+import { changeScreen, SCREENS } from '../redux'
 
 function Splash(props) {
   const styles = {
@@ -24,12 +27,18 @@ function Splash(props) {
     }
   }
 
+  const dispatch = useDispatch()
+
+  function onStart() {
+    dispatch(changeScreen(SCREENS.QUIZ))
+  }
+
   return (
     <div style={styles.container}>
       <h1 style={{ margin: '-0.5rem' }}>Quizzical</h1>
       <p>Some description if needed</p>
 
-      <button style={styles.startButton} onClick={props.onStart}>Start quiz</button>
+      <button style={styles.startButton} onClick={onStart}>Start quiz</button>
     </div>
   )
 }
